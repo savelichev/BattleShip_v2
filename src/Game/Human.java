@@ -4,9 +4,6 @@ import Field.Cell;
 
 import java.util.Scanner;
 
-/**
- * Created by savel_000 on 17.05.2016.
- */
 public class Human extends Player {
     @Override
     public Cell move() {
@@ -16,13 +13,13 @@ public class Human extends Player {
         String vertical = in.nextLine();
         System.out.print("Enter horizontal coordinate(it must be digital): ");
         int horizontal = in.nextInt();
-        System.out.println("Your shoot is: "+vertical+","+ horizontal);
+        System.out.println("Your shoot is: " + vertical + "," + horizontal);
 
-        return null;
+        return convertHumanInputToCell(horizontal, vertical);
     }
 
-    @Override
-    public void shoot() {
 
+    private Cell convertHumanInputToCell(int hor, String ver) {
+        return new Cell(hor, Integer.parseInt(ver));
     }
 }

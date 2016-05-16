@@ -1,12 +1,23 @@
 package Game;
 
 
-import Field.Cell;
+import Field.*;
+
 
 public abstract class Player {
 
     public abstract Cell move();
 
-    public abstract void shoot();
+    public int shoot(Cell targetCell, BattleField field) {
+
+        for (Ship ship : field.getShips()) {
+            for (Deck deck: ship.getDecks()){
+                if(targetCell.equals(deck)){
+
+                }
+            }
+        }
+        return 0;//!!!!!!!!!!!!!!!!!!!!!!!!!!
+    }
 
 }

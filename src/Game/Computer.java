@@ -11,8 +11,5 @@ public class Computer extends Player {
         return null;
     }
 
-    @Override
-    public void shoot() {
 
-    }
 }
