@@ -1,19 +1,33 @@
 package Game;
 
+import Field.Cell;
 import Field.ComputerBattleField;
+import Field.HumanBattleField;
+
+import java.util.Random;
 
 
 public class Computer extends Player {
 
-    ComputerBattleField computerBattleField = new ComputerBattleField();
-
-    public ComputerBattleField getComputerBattleField() {
-        return computerBattleField;
+    public HumanBattleField getHumanBattleField() {
+        return humanBattleField;
     }
+
+    HumanBattleField humanBattleField = new HumanBattleField();
 
     @Override
     public String move() {
-        return null;
+
+        Random random = new Random();
+        Cell targetCell;
+
+        do {
+            targetCell = new Cell(random.nextInt(10), random.nextInt(10));
+        } while ((humanBattleField.getShots().contains(targetCell)));
+
+        String answer = shoot(targetCell, humanBattleField);
+        humanBattleField.getShots().add(targetCell);
+        return answer;
     }
 
 //    @Override

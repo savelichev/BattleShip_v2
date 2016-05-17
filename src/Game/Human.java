@@ -1,16 +1,17 @@
 package Game;
 
 import Field.Cell;
+import Field.ComputerBattleField;
 import Field.HumanBattleField;
 
 import java.util.Scanner;
 
 public class Human extends Player {
 
-    HumanBattleField humanBattleField = new HumanBattleField();
+    ComputerBattleField computerBattleField = new ComputerBattleField();
 
-    public HumanBattleField getHumanBattleField() {
-        return humanBattleField;
+    public ComputerBattleField getComputerBattleField() {
+        return computerBattleField;
     }
 
     @Override
@@ -24,7 +25,7 @@ public class Human extends Player {
         System.out.println("Your shot is: " + vertical + "," + horizontal);
 
         Cell targetCell = convertHumanInputToCell(horizontal, vertical);
-        String answer = shoot(targetCell, humanBattleField);
+        String answer = shoot(targetCell, computerBattleField);
         return answer;
     }
 

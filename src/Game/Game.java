@@ -14,14 +14,22 @@ public class Game {
 
     public void startGame() {
 
-        Boolean humanMove = true;
+        Boolean humanMove = false;
         Boolean endGame = false;
         while (!endGame) {
-            human.getHumanBattleField().printField();
+            computer.getHumanBattleField().printField();
             System.out.println();
-            computer.getComputerBattleField().printField();
+            human.getComputerBattleField().printField();
+            if (humanMove) {
+                human.move();
+            }else {
+                computer.move();
+            }
 
 
+            computer.getHumanBattleField().printField();
+            System.out.println();
+            human.getComputerBattleField().printField();
         }
     }
 
