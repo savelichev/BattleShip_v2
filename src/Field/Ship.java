@@ -11,14 +11,17 @@ public class Ship {
         this.deckCapacity = deckCapacity;
     }
 
-    private ArrayList<Deck> decks = new ArrayList<>();
-    private ArrayList<Deck> hitDecks;
+    private ArrayList<Deck> aliveDecks = new ArrayList<>();
+
+    private ArrayList<Deck> hitDecks = new ArrayList<>();
+
     private ArrayList<Cell> aroundCells = new ArrayList();
 
     private int deckCapacity;
 
-    public ArrayList<Deck> getDecks() {
-        return decks;
+
+    public ArrayList<Deck> getAliveDecks() {
+        return aliveDecks;
     }
 
     public ArrayList<Deck> getHitDecks() {
@@ -33,8 +36,9 @@ public class Ship {
         return deckCapacity;
     }
 
+
     public boolean isDestroyedShip() {
-        if (decks.size() == hitDecks.size()) {
+        if (aliveDecks.size() == hitDecks.size()) {
             return true;
         }
         return false;
@@ -42,7 +46,7 @@ public class Ship {
 
     public void findAroundCells() {
 
-        for (Deck deck : decks) {
+        for (Deck deck : aliveDecks) {
             aroundCells.addAll(deck.findNearestCellsForOneCell());
         }
         filterCellFromDecks();
@@ -54,10 +58,17 @@ public class Ship {
 
         Set<Cell> set = new HashSet<>(aroundCells);
 
-        set.removeAll(decks);
+        set.removeAll(aliveDecks);
 
         aroundCells = new ArrayList<>(set);
 
+    }
+
+    public void hitDeck(Deck deck) {
+        if (aliveDecks.contains(deck)) {
+            hitDecks.add(deck);
+            aliveDecks.remove(deck);
+        }
     }
 
 

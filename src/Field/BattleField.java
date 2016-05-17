@@ -8,7 +8,9 @@ public abstract class BattleField {
 
     private ArrayList<Ship> ships;
 
-    private ArrayList<Cell> usedCells;
+    private ArrayList<Cell> usedCells = new ArrayList<>();
+
+    private ArrayList<Cell> shots = new ArrayList<>();
 
     public ArrayList<Ship> getShips() {
         return ships;
@@ -19,7 +21,7 @@ public abstract class BattleField {
     }
 
     {
-        usedCells =new ArrayList<>();
+        usedCells = new ArrayList<>();
 
         for (int i = 0; i < field.length; i++) {
             for (int j = 0; j < field.length; j++) {
@@ -32,37 +34,65 @@ public abstract class BattleField {
         return field;
     }
 
-    public void drowShipsForFriendField(){
+    public void drowShipsForFriendField() {
 
-        for (Ship ship:ships){
-            for (Deck deck : ship.getDecks()){
+        for (Ship ship : ships) {
+            for (Deck deck : ship.getAliveDecks()) {
                 int x = deck.getHorizontal();
                 int y = deck.getVertical();
-                field[x][y]='H';
+                field[x][y] = 'H';
             }
         }
     }
 
-    public void printField(){
+    public void printField() {
         System.out.println("\tA B C D E F G H I J");
         for (int i = 0; i < 10; i++) {
             printRowMarks(i);
 
             for (int j = 0; j < 10; j++) {
-                System.out.print(field[i][j]+" ");
+                System.out.print(field[i][j] + " ");
             }
             System.out.println();
         }
     }
 
 
-
-    public void printRowMarks(int i){
-        int row = i+1;
-        if (row!=10) {
-            System.out.print(" "+row + "|\t");
-        }else{
-            System.out.print(row+ "|\t");
+    public void printRowMarks(int i) {
+        int row = i + 1;
+        if (row != 10) {
+            System.out.print(" " + row + "|\t");
+        } else {
+            System.out.print(row + "|\t");
         }
     }
+
+    public int shoot(Cell targetCell) {
+
+        for (Ship ship : ships) {
+            for (Deck deck : ship.getAliveDecks()) {
+                if (targetCell.equals(deck)) {
+                    ship.hitDeck(deck);
+                    if (ship.isDestroyedShip()) {
+                        return 2;
+                    } else return 1;
+                }
+            }
+        }
+        return 0;
+    }
+
+    public void markCellAsMiss(Cell cell) {
+        field[(cell.getHorizontal())][(cell.getVertical())] = '*';
+    }
+
+    public void markCellAsHit(Cell cell) {
+        field[(cell.getHorizontal())][(cell.getVertical())] = '/';
+    }
+
+    public void marCellAsDestroyed(Cell cell) {
+        field[(cell.getHorizontal())][(cell.getVertical())] = 'X';
+    }
+
+
 }

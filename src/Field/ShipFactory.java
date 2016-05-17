@@ -25,14 +25,14 @@ public class ShipFactory {
                 do {
                     tempShip = createShip(i);
 
-                    for (Deck deck : tempShip.getDecks()) {
+                    for (Deck deck : tempShip.getAliveDecks()) {
 
                     }
 
                 } while (!validateShip(tempShip));
 
                 ships.add(tempShip);
-                usedCells.addAll(tempShip.getDecks());
+                usedCells.addAll(tempShip.getAliveDecks());
                 usedCells.addAll(tempShip.getAroundCells());
 
             }
@@ -61,10 +61,10 @@ public class ShipFactory {
             verticalFirstCoordinate = random.nextInt(10);
             horizontalFirstCoordinate = random.nextInt(11 - decks);
 
-            ship.getDecks().add(new Deck(horizontalFirstCoordinate, verticalFirstCoordinate));
+            ship.getAliveDecks().add(new Deck(horizontalFirstCoordinate, verticalFirstCoordinate));
 
             for (int i = 1; i < decks; i++) {
-                ship.getDecks().add(new Deck(horizontalFirstCoordinate + i, verticalFirstCoordinate));
+                ship.getAliveDecks().add(new Deck(horizontalFirstCoordinate + i, verticalFirstCoordinate));
             }
         } else {
             //create verticalShip
@@ -72,10 +72,10 @@ public class ShipFactory {
             verticalFirstCoordinate = random.nextInt(11 - decks);
             horizontalFirstCoordinate = random.nextInt(10);
 
-            ship.getDecks().add(new Deck(horizontalFirstCoordinate, verticalFirstCoordinate));
+            ship.getAliveDecks().add(new Deck(horizontalFirstCoordinate, verticalFirstCoordinate));
 
             for (int i = 1; i < decks; i++) {
-                ship.getDecks().add(new Deck(horizontalFirstCoordinate, verticalFirstCoordinate + i));
+                ship.getAliveDecks().add(new Deck(horizontalFirstCoordinate, verticalFirstCoordinate + i));
             }
         }
         ship.findAroundCells();
@@ -84,10 +84,7 @@ public class ShipFactory {
 
     private boolean validateShip(Ship tempShip) {
 
-
-        ArrayList<Deck> tempUnusedCells = new ArrayList<>();
-
-        for (Deck deck : tempShip.getDecks()) {
+        for (Deck deck : tempShip.getAliveDecks()) {
             if (usedCells.contains((Cell) (deck))) {
                 return false;
             }

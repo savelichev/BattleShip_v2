@@ -8,16 +8,16 @@ public abstract class Player {
 
     public abstract Cell move();
 
-    public int shoot(Cell targetCell, BattleField field) {
+    public String shoot(Cell targetCell, BattleField field) {
 
-        for (Ship ship : field.getShips()) {
-            for (Deck deck: ship.getDecks()){
-                if(targetCell.equals(deck)){
-
-                }
+        String result= "no shoot";
+            switch (field.shoot(targetCell)){
+                case 0 : result="miss"; break;
+                case 1 : result="hit"; break;
+                case 2 : result="destroy"; break;
             }
-        }
-        return 0;//!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+        return result;
     }
 
 }
