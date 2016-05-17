@@ -2,14 +2,46 @@ package Field;
 
 import java.util.ArrayList;
 
-/**
- * Created by savel_000 on 16.05.2016.
- */
+
 public class FriendBattleField extends BattleField {
+
+
+    public FriendBattleField() {
+        setShips(new ShipFactory().createShips());
+    }
+
+
+    protected void prepearField() {
+
+        drowBasicCellMarks();
+
+        for (Ship ship : getShips()) {
+            for (Deck aliveDeck : ship.getAliveDecks()) {
+                markCellAsAliveDeck(aliveDeck);
+            }
+        }
+
+        for (Ship ship : getShips()) {
+            for (Deck hitDeck : ship.getHitDecks()) {
+                markCellAsHitDeck(hitDeck);
+            }
+        }
+
+        for (Ship ship : getShips()) {
+            for (Cell cell : getMissShots()) {
+                markCellAsMiss(cell);
+            }
+        }
+
+    }
 
     @Override
     public void printField() {
-        super.drowShipsForFriendField();
+
+        prepearField();
         super.printField();
+
     }
+
+
 }
