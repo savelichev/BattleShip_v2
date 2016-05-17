@@ -58,6 +58,7 @@ public abstract class BattleField {
                 if (targetCell.equals(deck)) {
                     ship.hitDeck(deck);
                     if (ship.isDestroyedShip()) {
+                        markShipAsDestroyed(ship);
                         return 2;
                     } else return 1;
                 }
@@ -77,13 +78,24 @@ public abstract class BattleField {
         }
     }
 
+    public void markShipAsDestroyed(Ship ship) {
+        for (Deck deck : ship.getHitDecks()) {
+            markCellAsDestroyedDeck(deck);
+        }
+
+        for (Cell cell : ship.getAroundCells()) {
+            markCellAsMiss(cell);
+        }
+
+    }
+
 
     public void markCellAsMiss(Cell cell) {
         field[(cell.getHorizontal())][(cell.getVertical())] = '*';
     }
 
     public void markCellAsHitDeck(Cell cell) {
-        field[(cell.getHorizontal())][(cell.getVertical())] = '/';
+        field[(cell.getHorizontal())][(cell.getVertical())] = 'x';
     }
 
     public void markCellAsDestroyedDeck(Cell cell) {
@@ -94,7 +106,7 @@ public abstract class BattleField {
         field[(cell.getHorizontal())][(cell.getVertical())] = 'H';
     }
 
-    public void printField(){
+    public void printField() {
 
         prepearField();
 
@@ -112,8 +124,6 @@ public abstract class BattleField {
     protected abstract void prepearField();
 
     ;
-
-
 
 
 //    public void drowShipsForFriendField() {

@@ -38,7 +38,7 @@ public class Ship {
 
 
     public boolean isDestroyedShip() {
-        if (aliveDecks.size() == hitDecks.size()) {
+        if (aliveDecks.size()==0) {
             return true;
         }
         return false;

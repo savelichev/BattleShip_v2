@@ -14,22 +14,36 @@ public class Game {
 
     public void startGame() {
 
-        Boolean humanMove = false;
+        Boolean isHumanMove = true;
         Boolean endGame = false;
+
+        computer.getHumanBattleField().printField();
+        System.out.println();
+        human.getComputerBattleField().printField();
+
+
         while (!endGame) {
-            computer.getHumanBattleField().printField();
-            System.out.println();
-            human.getComputerBattleField().printField();
-            if (humanMove) {
-                human.move();
-            }else {
-                computer.move();
+
+            if (isHumanMove) {
+                String flag = human.move();
+                if (flag == "hit" || flag == "destroy") {
+                    isHumanMove = true;
+                } else if (flag == "miss") {
+                    isHumanMove = false;
+                }
+            } else {
+                String flag = computer.move();
+                if (flag == "hit" || flag == "destroy") {
+                    isHumanMove = false;
+                } else if (flag == "miss") {
+                    isHumanMove = true;
+                }
             }
 
-
             computer.getHumanBattleField().printField();
             System.out.println();
             human.getComputerBattleField().printField();
+
         }
     }
 
