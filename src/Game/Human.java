@@ -1,21 +1,31 @@
 package Game;
 
 import Field.Cell;
+import Field.FriendBattleField;
 
 import java.util.Scanner;
 
 public class Human extends Player {
+
+    FriendBattleField friendBattleField = new FriendBattleField();
+
+    public FriendBattleField getFriendBattleField() {
+        return friendBattleField;
+    }
+
     @Override
-    public Cell move() {
+    public String move() {
 
         Scanner in = new Scanner(System.in);
-        System.out.print("Enter vertical coordinate(it must be letter A-J): ");
+        System.out.print("Enter vertical coordinate(it must be a letter A-J): ");
         String vertical = in.nextLine();
-        System.out.print("Enter horizontal coordinate(it must be digital): ");
+        System.out.print("Enter horizontal coordinate(it must be a number 1-10): ");
         int horizontal = in.nextInt();
-        System.out.println("Your shoot is: " + vertical + "," + horizontal);
+        System.out.println("Your shot is: " + vertical + "," + horizontal);
 
-        return convertHumanInputToCell(horizontal, vertical);
+        Cell targetCell = convertHumanInputToCell(horizontal, vertical);
+        String answer = shoot(targetCell, friendBattleField);
+        return answer;
     }
 
 

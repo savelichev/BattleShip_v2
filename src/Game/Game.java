@@ -7,8 +7,27 @@ import java.util.Scanner;
  */
 public class Game {
 
+    public Game() {
+
+    }
+
+    Human human = new Human();
+    Computer computer = new Computer();
+
+    public void startGame(){
+        while (true){
+            human.getFriendBattleField().printField();
+            System.out.println();
+            computer.getEnemyBattleField().printField();
+
+            System.out.println(human.move());
+
+            human.getFriendBattleField().printField();
+            System.out.println();
+            computer.getEnemyBattleField().printField();
 
 
-
+        }
+        }
 
 }

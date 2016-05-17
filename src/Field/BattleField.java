@@ -51,6 +51,8 @@ public abstract class BattleField {
 
     public int shoot(Cell targetCell) {
 
+        shots.add(targetCell);
+
         for (Ship ship : ships) {
             for (Deck deck : ship.getAliveDecks()) {
                 if (targetCell.equals(deck)) {
@@ -61,6 +63,7 @@ public abstract class BattleField {
                 }
             }
         }
+        missShots.add(targetCell);
         return 0;
     }
 

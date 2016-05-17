@@ -6,7 +6,7 @@ import Field.*;
 
 public abstract class Player {
 
-    public abstract Cell move();
+    public abstract String move();
 
     public String shoot(Cell targetCell, BattleField field) {
 

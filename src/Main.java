@@ -1,15 +1,14 @@
+import Field.Cell;
+import Field.Deck;
 import Field.EnemyBattleField;
 import Field.FriendBattleField;
+import Game.Game;
 
 
 public class Main {
 
     public static void main(String[] args) {
-        FriendBattleField fr = new FriendBattleField();
-        fr.printField();
-
-
-        EnemyBattleField enemyBattleField = new EnemyBattleField();
-        enemyBattleField.printField();
+        Game game = new Game();
+        game.startGame();
     }
 }
