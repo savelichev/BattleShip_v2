@@ -1,16 +1,16 @@
 package Game;
 
 import Field.Cell;
-import Field.FriendBattleField;
+import Field.HumanBattleField;
 
 import java.util.Scanner;
 
 public class Human extends Player {
 
-    FriendBattleField friendBattleField = new FriendBattleField();
+    HumanBattleField humanBattleField = new HumanBattleField();
 
-    public FriendBattleField getFriendBattleField() {
-        return friendBattleField;
+    public HumanBattleField getHumanBattleField() {
+        return humanBattleField;
     }
 
     @Override
@@ -24,7 +24,7 @@ public class Human extends Player {
         System.out.println("Your shot is: " + vertical + "," + horizontal);
 
         Cell targetCell = convertHumanInputToCell(horizontal, vertical);
-        String answer = shoot(targetCell, friendBattleField);
+        String answer = shoot(targetCell, humanBattleField);
         return answer;
     }
 

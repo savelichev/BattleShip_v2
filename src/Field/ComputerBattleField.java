@@ -1,25 +1,14 @@
 package Field;
 
-import java.util.ArrayList;
+public class ComputerBattleField extends BattleField {
 
-
-public class FriendBattleField extends BattleField {
-
-
-    public FriendBattleField() {
+    public ComputerBattleField() {
         setShips(new ShipFactory().createShips());
     }
 
-
+    @Override
     protected void prepearField() {
-
         drowBasicCellMarks();
-
-        for (Ship ship : getShips()) {
-            for (Deck aliveDeck : ship.getAliveDecks()) {
-                markCellAsAliveDeck(aliveDeck);
-            }
-        }
 
         for (Ship ship : getShips()) {
             for (Deck hitDeck : ship.getHitDecks()) {
@@ -32,16 +21,9 @@ public class FriendBattleField extends BattleField {
                 markCellAsMiss(cell);
             }
         }
-
-    }
-
-    @Override
-    public void printField() {
-
-        prepearField();
-        super.printField();
-
     }
 
 
 }
+
+

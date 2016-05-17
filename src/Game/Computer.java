@@ -1,17 +1,14 @@
 package Game;
 
-import Field.Cell;
-import Field.EnemyBattleField;
-
-import java.util.Random;
+import Field.ComputerBattleField;
 
 
 public class Computer extends Player {
 
-    EnemyBattleField enemyBattleField = new EnemyBattleField();
+    ComputerBattleField computerBattleField = new ComputerBattleField();
 
-    public EnemyBattleField getEnemyBattleField() {
-        return enemyBattleField;
+    public ComputerBattleField getComputerBattleField() {
+        return computerBattleField;
     }
 
     @Override

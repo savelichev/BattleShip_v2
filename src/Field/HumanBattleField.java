@@ -1,14 +1,25 @@
 package Field;
 
-public class EnemyBattleField extends BattleField {
+import java.util.ArrayList;
 
-    public EnemyBattleField() {
+
+public class HumanBattleField extends BattleField {
+
+
+    public HumanBattleField() {
         setShips(new ShipFactory().createShips());
     }
 
-    @Override
+
     protected void prepearField() {
+
         drowBasicCellMarks();
+
+        for (Ship ship : getShips()) {
+            for (Deck aliveDeck : ship.getAliveDecks()) {
+                markCellAsAliveDeck(aliveDeck);
+            }
+        }
 
         for (Ship ship : getShips()) {
             for (Deck hitDeck : ship.getHitDecks()) {
@@ -21,9 +32,16 @@ public class EnemyBattleField extends BattleField {
                 markCellAsMiss(cell);
             }
         }
+
+    }
+
+    @Override
+    public void printField() {
+
+        prepearField();
+        super.printField();
+
     }
 
 
 }
-
-
