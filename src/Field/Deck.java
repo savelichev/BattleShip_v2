@@ -5,7 +5,7 @@ package Field;
  */
 public class Deck extends Cell {
 
-    boolean isDestroy = false;
+    private boolean isDestroy = false;
 
     public Deck(int horizontal, int vertical) {
         super(horizontal, vertical);
