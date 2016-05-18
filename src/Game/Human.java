@@ -66,6 +66,7 @@ public class Human extends Player {
             case "J":
                 vertical = 9;
                 break;
+            default: vertical=0;
         }
 
         return new Cell(horizontal, vertical);

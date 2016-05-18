@@ -61,7 +61,7 @@ public class Game {
         for (Ship ship : human.getComputerBattleField().getShips()) {
 
             if ((ship.getAliveDecks().size() > 0)) {
-                return true;
+                return false;
             }
 
         }
@@ -69,12 +69,12 @@ public class Game {
         for (Ship ship : computer.getHumanBattleField().getShips()) {
 
             if ((ship.getAliveDecks().size() > 0)) {
-                return true;
+                return false;
             }
 
         }
 
-        return false;
+        return true;
     }
 
 }

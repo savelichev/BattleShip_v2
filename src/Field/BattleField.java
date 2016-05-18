@@ -23,10 +23,6 @@ public abstract class BattleField {
         return shots;
     }
 
-    public ArrayList<Cell> getUsedCells() {
-        return usedCells;
-    }
-
     public ArrayList<Ship> getShips() {
         return ships;
     }
@@ -78,16 +74,6 @@ public abstract class BattleField {
         }
     }
 
-    public void markShipAsDestroyed(Ship ship) {
-        for (Deck deck : ship.getHitDecks()) {
-            markCellAsDestroyedDeck(deck);
-        }
-
-        for (Cell cell : ship.getAroundCells()) {
-            markCellAsMiss(cell);
-        }
-
-    }
 
 
     public void markCellAsMiss(Cell cell) {
@@ -95,10 +81,6 @@ public abstract class BattleField {
     }
 
     public void markCellAsHitDeck(Cell cell) {
-        field[(cell.getHorizontal())][(cell.getVertical())] = 'x';
-    }
-
-    public void markCellAsDestroyedDeck(Cell cell) {
         field[(cell.getHorizontal())][(cell.getVertical())] = 'X';
     }
 

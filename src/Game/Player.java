@@ -11,8 +11,9 @@ public abstract class Player {
     public String shoot(Cell targetCell, BattleField field) {
 
         String result = "no shoot";
+
         int shot = field.shoot(targetCell);
-        System.out.println(shot);
+
         switch (shot) {
             case 0:
                 result = "miss";
