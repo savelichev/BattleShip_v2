@@ -58,7 +58,7 @@ public abstract class BattleField {
                 if (targetCell.equals(deck)) {
                     ship.hitDeck(deck);
                     if (ship.isDestroyedShip()) {
-                       missShots.addAll(ship.getAroundCells());
+                        missShots.addAll(ship.getAroundCells());
                         return 2;
                     } else return 1;
                 }

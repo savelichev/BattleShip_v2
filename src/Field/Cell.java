@@ -77,7 +77,7 @@ public class Cell {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null ) return false;
+        if (o == null) return false;
 
         Cell cell = (Cell) o;
 

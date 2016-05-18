@@ -1,5 +1,10 @@
 package Game;
 
+import Field.Deck;
+import Field.Ship;
+
+import java.util.Collections;
+
 /**
  * Created by savel_000 on 17.05.2016.
  */
@@ -40,11 +45,36 @@ public class Game {
                 }
             }
 
+
             computer.getHumanBattleField().printField();
             System.out.println();
             human.getComputerBattleField().printField();
+            if (winnerCheck()) {
+                System.out.println("Game is over!");
+                endGame = true;
+            }
+        }
+    }
+
+    public boolean winnerCheck() {
+
+        for (Ship ship : human.getComputerBattleField().getShips()) {
+
+            if ((ship.getAliveDecks().size() > 0)) {
+                return true;
+            }
 
         }
+
+        for (Ship ship : computer.getHumanBattleField().getShips()) {
+
+            if ((ship.getAliveDecks().size() > 0)) {
+                return true;
+            }
+
+        }
+
+        return false;
     }
 
 }

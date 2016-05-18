@@ -30,12 +30,4 @@ public class Computer extends Player {
         return answer;
     }
 
-//    @Override
-//    public Cell move() {
-//        Random random =  new Random();
-//
-//        return new Cell(random.nextInt(10),random.nextInt(10));
-//    }
-
-
 }
